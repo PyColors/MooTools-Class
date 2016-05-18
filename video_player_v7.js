@@ -25,7 +25,6 @@
         },
 
         initialize: function (container, options) {
-            // console.log('toto');
 
             //Initialize container
             this.elements.container = container;
@@ -80,7 +79,7 @@
             this.properties.position_bg_body_y = this.elements.bg_body.getPosition().y;
         },
 
-        // Mise en place background fond video largeur 100%
+        // background 100%
         initialize_background: function () {
             var that = this;
 
@@ -96,9 +95,8 @@
                 if (Browser.ie7) {
                     this.elements.bg_body.setStyle('height', that.properties.height_bg_body + that.properties.height_container);
                 }
-
         }
-
+        
     });
 
     this.Eurosport_v7._Objects.VideoPlayer = VideoPlayer;
