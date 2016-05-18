@@ -3,7 +3,7 @@
 // Element.implement :
 // 		- (options) [on the container element]
 //****************************************************************************/
-(function () {
+(function() {
 
     var VideoPlayer = new Class({
         Implements: [Options, Events, Eurosport_v7._Objects.Log],
@@ -21,10 +21,9 @@
             position_bg_body_y: null
         },
 
-        options: {
-        },
+        options: {},
 
-        initialize: function (container, options) {
+        initialize: function(container, options) {
 
             //Initialize container
             this.elements.container = container;
@@ -45,24 +44,24 @@
             this.initialize_background();
 
             //Initialize initialize_background
-            window.addEvent('load', function () {
+            window.addEvent('load', function() {
                 this.initialize_properties();
                 this.initialize_background();
-            } .bind(this));
+            }.bind(this));
         },
 
-        toElement: function () {
+        toElement: function() {
             return this.elements.container;
         },
 
-        initialize_options: function (options) {
+        initialize_options: function(options) {
             if (typeof options == 'undefined' || options == null) {
                 options = {};
             }
             this.setOptions(options);
         },
 
-        initialize_elements: function () {
+        initialize_elements: function() {
             this.elements.bg_body = document.body.getElement('.fullwidth .bg-body');
 
             this.elements.bg_body_2 = new Element('div', {
@@ -72,7 +71,7 @@
             this.elements.bg_body.grab(this.elements.bg_body_2, 'bottom');
         },
 
-        initialize_properties: function () {
+        initialize_properties: function() {
             this.properties.height_container = this.elements.container.getSize().y;
             this.properties.height_bg_body = this.elements.bg_body.getSize().y;
             this.properties.position_container_y = this.elements.container.getPosition().y;
@@ -80,7 +79,7 @@
         },
 
         // background 100%
-        initialize_background: function () {
+        initialize_background: function() {
             var that = this;
 
             this.elements.bg_body_2.setStyles({
@@ -88,31 +87,31 @@
                 top: that.properties.position_container_y - that.properties.position_bg_body_y
             });
 
-         // this.elements.bg_body.setStyle('height', that.properties.height_bg_body - that.properties.height_container);
-         // this.elements.bg_body.setStyle('height', that.properties.height_bg_body + that.properties.height_container);
+            // this.elements.bg_body.setStyle('height', that.properties.height_bg_body - that.properties.height_container);
+            // this.elements.bg_body.setStyle('height', that.properties.height_bg_body + that.properties.height_container);
             this.elements.bg_body.setStyle('height', that.properties.height_container);
 
-                if (Browser.ie7) {
-                    this.elements.bg_body.setStyle('height', that.properties.height_bg_body + that.properties.height_container);
-                }
+            if (Browser.ie7) {
+                this.elements.bg_body.setStyle('height', that.properties.height_bg_body + that.properties.height_container);
+            }
         }
-        
+
     });
 
     this.Eurosport_v7._Objects.VideoPlayer = VideoPlayer;
 
     Element.Properties.video_player = {
-        set: function (params) {
+        set: function(params) {
             var video_player = new Eurosport_v7._Objects.VideoPlayer(this, params[0]);
             this.store('video_player', video_player);
         },
-        get: function () {
+        get: function() {
             return this.retrieve('video_player');
         }
     };
 
     Element.implement({
-        video_player: function (options) {
+        video_player: function(options) {
             this.set('video_player', [options]);
             return this;
         }
