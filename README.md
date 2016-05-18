@@ -1,1 +1,1 @@
-Object oriented javascript with Mootools
+Object oriented javascript with Mootools at EuroSport
